@@ -1,4 +1,3 @@
-import generateRandomDate from './generateRandomDate.js';
-import generateRandomName from './generateRandomName.js';
+import getRandomDate from './getRandomDate.js';
 
-export { generateRandomDate, generateRandomName };
+export { getRandomDate };
