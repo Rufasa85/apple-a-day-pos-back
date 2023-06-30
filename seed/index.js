@@ -3,26 +3,26 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Customer, Item, OrderItem, Order, ShiftItem, Shift } from '../models/index.js';
+import getSeeds from './getSeeds.js';
 
-import seedData from './generateData.js';
+// accepts one argument - number of shifts
+const seeds = getSeeds(10);
 
-console.log(seedData);
+const seed = async () => {
+	try {
+		await sequelize.sync({ force: true });
 
-// const seed = async () => {
-// 	try {
-// 		await sequelize.sync({ force: true });
+		await Shift.bulkCreate(seeds.shifts);
+		await Item.bulkCreate(seeds.items);
+		await Customer.bulkCreate(seeds.customers);
+		await Order.bulkCreate(seeds.orders);
+		await ShiftItem.bulkCreate(seeds.shiftItems);
+		await OrderItem.bulkCreate(seeds.orderItems);
 
-// 		await Customer.bulkCreate(customers);
-// 		await Item.bulkCreate(items);
-// 		await Shift.bulkCreate(shifts);
-// 		await Order.bulkCreate(orders);
-// 		await OrderItem.bulkCreate(orderItems);
-// 		await ShiftItem.bulkCreate(shiftItems);
+		process.exit(0);
+	} catch (error) {
+		console.error(error);
+	}
+};
 
-// 		process.exit(0);
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// };
-
-// seed();
+seed();

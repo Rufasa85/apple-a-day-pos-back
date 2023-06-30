@@ -7,12 +7,19 @@ ShiftItem.init(
 	{
 		ShiftId: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: false,
+			unique: false
 		},
 
 		ItemId: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: false,
+			unique: false
+		},
+
+		quantity: {
+			type: DataTypes.INTEGER,
+			allowNull: true
 		}
 	},
 	{

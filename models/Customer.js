@@ -15,13 +15,6 @@ Customer.init(
 			allowNull: false
 		},
 
-		fullName: {
-			type: DataTypes.VIRTUAL,
-			get() {
-				return `${this.firstName} ${this.lastName}`;
-			}
-		},
-
 		dateOfBirth: {
 			type: DataTypes.DATE,
 			allowNull: false
