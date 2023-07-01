@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
 
 		const options = {
-			include: { all: true, nested: true },
-			order: [['fullName']]
+			// include: { all: true, nested: true },
+			order: [['lastName'], ['firstName']]
 		};
 
 		const customers = await Customer.findAll(options);

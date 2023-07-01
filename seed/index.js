@@ -1,12 +1,9 @@
 import sequelize from '../config/connection.js';
-import dotenv from 'dotenv';
-dotenv.config();
 
 import { Customer, Item, OrderItem, Order, ShiftItem, Shift } from '../models/index.js';
-import getSeeds from './getSeeds.js';
+import generateSeedData from './generateSeedData.js';
 
-// accepts one argument - number of shifts
-const seeds = getSeeds(10);
+const seeds = generateSeedData(); // (numCustomers, numItems, numOrders, numShifts, numItemsPerShift, numItemsPerOrder)
 
 const seed = async () => {
 	try {

@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
 	try {
 		const options = {
-			include: { all: true, nested: true },
+			// include: { all: true, nested: true },
 			order: [['name']]
 		};
 
