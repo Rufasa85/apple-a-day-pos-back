@@ -11,9 +11,6 @@ Order.belongsTo(Customer);
 Shift.hasMany(Order);
 Order.belongsTo(Shift);
 
-// Customer.belongsToMany(Shift, { through: Order });
-// Shift.belongsToMany(Customer, { through: Order });
-
 Order.belongsToMany(Item, { through: OrderItem });
 Item.belongsToMany(Order, { through: OrderItem });
 
