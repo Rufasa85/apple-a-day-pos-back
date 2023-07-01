@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Order } from '../../models/index.js';
+import { Customer, Order, Shift, Item } from '../../models/index.js';
 
 const router = express.Router();
 
@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 
 		const options = {
 			// include: { all: true, nested: true }
+			// include: { all: true }
 		};
 
 		const orders = await Order.findAll(options);
@@ -31,7 +32,8 @@ router.get('/:id', async (req, res) => {
 		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
 
 		const options = {
-			include: { all: true, nested: true }
+			// include: { all: true, nested: true }
+			include: { all: true }
 		};
 
 		const order = await Order.findByPk(req.params.id, options);

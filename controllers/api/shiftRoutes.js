@@ -31,7 +31,8 @@ router.get('/:id', async (req, res) => {
 		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
 
 		const options = {
-			include: { all: true, nested: true }
+			// include: { all: true, nested: true }
+			include: { all: true }
 		};
 
 		const shift = await Shift.findByPk(req.params.id, options);
