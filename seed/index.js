@@ -3,7 +3,8 @@ import sequelize from '../config/connection.js';
 import { Customer, Item, OrderItem, Order, ShiftItem, Shift } from '../models/index.js';
 import generateSeedData from './generateSeedData.js';
 
-const seeds = generateSeedData(); // (numCustomers, numItems, numOrders, numShifts, numItemsPerShift, numItemsPerOrder)
+// optional arguments: (numCustomers, numItems, numOrders, numShifts, numItemsPerShift, numItemsPerOrder)
+const seeds = generateSeedData();
 
 const seed = async () => {
 	try {

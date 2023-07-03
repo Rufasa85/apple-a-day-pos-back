@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Shift } from '../../models/index.js';
+// import all models to easily manipulate includes
+// remove unused models before deployment
+import { Customer, Order, Shift, Item } from '../../models/index.js';
 
 const router = express.Router();
 
