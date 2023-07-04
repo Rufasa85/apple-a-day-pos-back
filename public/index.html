@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+		<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+
 		<link rel="stylesheet" href="./assets/styles/variables.css" />
 		<link rel="stylesheet" href="./assets/styles/reset.css" />
 		<link rel="stylesheet" href="./assets/styles/animations.css" />
@@ -13,6 +16,117 @@
 	</head>
 
 	<body>
-		<h1>The server is running!</h1>
+		<section id="model-nav-panel" class="nav-panel">
+			<header class="nav-header">
+				<a href="/">
+					<p id="site-title">🍎</p>
+				</a>
+			</header>
+
+			<nav id="model-nav" class="nav">
+				<button class="nav-item active">
+					<i class="fi fi-rr-user"></i>
+					<h3>User</h3>
+				</button>
+
+				<button class="nav-item">
+					<i class="fi fi-rr-users"></i>
+					<h3>Customer</h3>
+				</button>
+
+				<button class="nav-item">
+					<i class="fi fi-rr-soup"></i>
+					<h3>Item</h3>
+				</button>
+
+				<button class="nav-item">
+					<i class="fi fi-rr-cart-shopping-fast"></i>
+					<h3>Order</h3>
+				</button>
+
+				<button class="nav-item">
+					<i class="fi fi-rr-calendar-day"></i>
+					<h3>Shift</h3>
+				</button>
+			</nav>
+		</section>
+
+		<section id="route-nav-panel" class="nav-panel">
+			<nav id="route-nav" class="nav">
+				<button class="nav-item">
+					<h3>GET</h3>
+
+					<span id="get-options" class="sub-nav">
+						<h4 id="get-option-all" class="sub-nav-item active">all</h4>
+						<h4 id="get-option-one" class="sub-nav-item">one</h4>
+					</span>
+				</button>
+
+				<button class="nav-item active">
+					<h3>POST</h3>
+				</button>
+
+				<button class="nav-item">
+					<h3>PUT</h3>
+				</button>
+
+				<button class="nav-item">
+					<h3>DELETE</h3>
+				</button>
+			</nav>
+		</section>
+
+		<section id="user-post" class="details">
+			<header class="details-header">
+				<h3 class="route-path">
+					<span>/</span>
+					api
+					<span>/</span>
+					user
+					<span>/</span>
+					login
+				</h3>
+
+				<div class="tooltip">
+					<button class="copy-to-clipboard-button">
+						<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
+
+						<i class="fi fi-rr-copy-alt"></i>
+					</button>
+				</div>
+			</header>
+
+			<main class="details-main">
+				<section class="example">
+					<pre><code class="code">// Example Request
+
+const login = async () => {
+    const baseurl = process.env.BASE_URL;
+
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({ password: 'secret' })
+    };
+
+    try {
+        const res = await fetch(baseurl + '/api/user/login', options);
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+};</code></pre>
+				</section>
+			</main>
+		</section>
+
+		<div id="icon-credit">Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+		<script>
+			hljs.highlightAll();
+		</script>
+		<script src="./assets/scripts/script.js"></script>
 	</body>
 </html>

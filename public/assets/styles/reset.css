@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	transition: all 0.3s ease;
 }
 
 html {
@@ -13,6 +14,7 @@ html {
 body {
 	min-height: 100%;
 	line-height: 1.25;
+	font-size: 16px;
 	font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
@@ -22,10 +24,14 @@ option,
 optgroup,
 textarea,
 button,
-pre,
-code {
+pre {
 	font-size: 100%;
 	font-family: inherit;
+}
+
+code {
+	font-size: 1.2rem;
+	font-family: 'Inconsolata', monospace;
 }
 
 ol,
@@ -40,31 +46,21 @@ a:visited {
 }
 
 h1 {
-	font-size: 2.4em;
+	font-size: 2.4rem;
+	font-weight: 300;
 }
 
 h2 {
-	font-size: 1.8em;
+	font-size: 1.8rem;
+	font-weight: 300;
 }
 
 h3 {
-	font-size: 1.5em;
+	font-size: 1.2rem;
+	font-weight: 300;
 }
 
 h4 {
-	font-size: 0.9em;
-}
-
-@media screen and (max-width: 768px) {
-	h1 {
-		font-size: 1.8em;
-	}
-
-	h2 {
-		font-size: 1.5em;
-	}
-
-	h3 {
-		font-size: 1.2em;
-	}
+	font-size: 1rem;
+	font-weight: 300;
 }

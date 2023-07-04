@@ -109,7 +109,7 @@ This script drops the **apple_a_day_pos_db** database, if it exists, then create
 npm run seed
 ```
 
-> **WARNING**
+> **Warning**
 > Running this script will reset your database, deleting any existing data.
 
 <br>
