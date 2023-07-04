@@ -1,8 +1,12 @@
 # apple-a-day-pos-back
 
+<br>
+
 ## Description
 
 Backend for the Apple A Day point of sale system.
+
+<br>
 
 ## Table of Contents
 
@@ -17,7 +21,13 @@ Backend for the Apple A Day point of sale system.
 -  [Credits](#credits)
 -  [Questions](#questions)
 
+<br>
+<br>
+<br>
+
 # Installation
+
+<br>
 
 ## Dependencies
 
@@ -37,6 +47,9 @@ This will install the following dependencies:
 -  [nodemon](https://www.npmjs.com/package/nodemon)
 -  [sequelize](https://www.npmjs.com/package/sequelize)
 
+<br>
+<br>
+
 ## Environment Variables
 
 ```
@@ -48,11 +61,11 @@ APP_PASSWORD=tacocat
 JWT_SECRET=tacocat
 ```
 
-Create a `.env` file at the root of this directory.
+Environment variables are used to store information that differs between local and deployed environments.
 
 <br>
 
-Your file structure should look something like this:
+Create a `.env` file at the root of this directory. Your file structure should look something like this:
 
 > apple-a-day-pos-back<br>
 > ├ config<br>
@@ -82,6 +95,9 @@ Add the following variables to the file:
 | `APP_PASSWORD` | **\*\*\*\*\*\*\*\*** | Hard coded password for user login                       |
 | `JWT_SECRET`   | **\*\*\*\*\*\*\*\*** | A passphrase used for signing and decoding jsonwebtokens |
 
+<br>
+<br>
+
 ## Database
 
 ```bash
@@ -90,16 +106,19 @@ npm run resetdb
 
 This script drops the **apple_a_day_pos_db** database, if it exists, then creates a new one.
 
+<br>
+<br>
+
 ## Seeds
 
 ```bash
 npm run seed
 ```
 
-<div style="display: flex; flex-direction: column; background: hsl(0, 100%, 50%, 25%); border: 1px solid red; border-radius: 3px; padding: 20px;">
-    <p style="margin: 0; padding: 0;"><strong>⚠️ WARNING</strong><p>
-    <p style="margin: 0; padding: 0;">Running this script will reset your database, deleting any existing data.</p>
-</div>
+> **WARNING**
+> Running this script will reset your database, deleting any existing data.
+
+<br>
 
 ### Number of Seeds
 
@@ -118,6 +137,8 @@ Inside `seed/index.js`, the `generateSeedData()` function accepts 6 optional arg
 | numItemsPerShift | Defines number of items available per shift | 4               |
 | numItemsPerOrder | Defines number items purchased per order    | 1               |
 
+<br>
+
 #### **Example**
 
 ```js
@@ -134,7 +155,13 @@ console.log(seeds.customers.length);
 // output: 45
 ```
 
+<br>
+<br>
+<br>
+
 # Usage
+
+<br>
 
 ## Start the Server
 
@@ -144,6 +171,8 @@ npm start
 
 This script runs `server.js` which spins up the express server, syncs the database, and logs the port number.
 
+<br>
+
 ### Development Server
 
 ```bash
@@ -151,6 +180,9 @@ npm run dev
 ```
 
 This script runs `server.js` with [nodemon](https://www.npmjs.com/package/nodemon) which restarts the server on every file save.
+
+<br>
+<br>
 
 ## Routes
 
@@ -160,6 +192,8 @@ This script runs `server.js` with [nodemon](https://www.npmjs.com/package/nodemo
 
 All routes start with `/api`.
 
+<br>
+
 ### User Routes
 
 There is one user route for logging in.
@@ -168,11 +202,11 @@ There is one user route for logging in.
 | :----- | :----- | :------------ | :------ | :--- |
 | POST   | Login  | `/user/login` | none    | JSON |
 
-#### **Example**
+<br>
+
+#### **Example Request**
 
 ```js
-// Request
-
 const login = async () => {
 	const baseurl = process.env.BASE_URL;
 
@@ -192,13 +226,17 @@ const login = async () => {
 };
 ```
 
-```json
-// Response
+<br>
 
+#### **Example Response**
+
+```json
 {
 	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
+
+<br>
 
 ### Customer Routes
 
@@ -212,11 +250,11 @@ You must be logged in to access all customer data.
 | PUT    | Update | `/customer/:id` | Authorization: `token` | JSON |
 | DELETE | Delete | `/customer/:id` | Authorization: `token` | none |
 
-#### **Example**
+<br>
+
+#### **Example Request**
 
 ```js
-// Request
-
 const getCustomers = async (token) => {
 	const baseurl = process.env.BASE_URL;
 
@@ -237,9 +275,11 @@ const getCustomers = async (token) => {
 };
 ```
 
-```json
-// Response
+<br>
 
+#### **Example Response**
+
+```json
 [
 	{
 		"id": 2,
@@ -260,6 +300,8 @@ const getCustomers = async (token) => {
 ]
 ```
 
+<br>
+
 ### Item Routes
 
 You must be logged in to add, update, or delete items.
@@ -272,11 +314,11 @@ You must be logged in to add, update, or delete items.
 | PUT    | Update | `/item/:id` | Authorization: `token` | JSON |
 | DELETE | Delete | `/item/:id` | Authorization: `token` | none |
 
-#### **Example**
+<br>
+
+#### **Example Request**
 
 ```js
-// Request
-
 const getItems = async () => {
 	const baseurl = process.env.BASE_URL;
 
@@ -291,9 +333,11 @@ const getItems = async () => {
 };
 ```
 
-```json
-// Response
+<br>
 
+#### **Example Response**
+
+```json
 [
 	{
 		"id": 2,
@@ -310,6 +354,8 @@ const getItems = async () => {
 ]
 ```
 
+<br>
+
 ### Order Routes
 
 You must be logged in to access all order data.
@@ -322,11 +368,11 @@ You must be logged in to access all order data.
 | PUT    | Update | `/order/:id` | Authorization: `token` | JSON |
 | DELETE | Delete | `/order/:id` | Authorization: `token` | none |
 
-#### **Example**
+<br>
+
+#### **Example Request**
 
 ```js
-// Request
-
 const getOrders = async (token) => {
 	const baseurl = process.env.BASE_URL;
 
@@ -347,13 +393,15 @@ const getOrders = async (token) => {
 };
 ```
 
-```json
-// Response
+<br>
 
+#### **Example Response**
+
+```json
 [
 	{
 		"id": 1,
-		"CustomerId": 10,
+		"CustomerId": null,
 		"ShiftId": 3,
 		"createdAt": "2023-07-01T09:40:29.000Z",
 		"updatedAt": "2023-07-01T09:40:29.000Z"
@@ -368,6 +416,8 @@ const getOrders = async (token) => {
 ]
 ```
 
+<br>
+
 ### Shift Routes
 
 You must be logged in to access all shift data.
@@ -380,11 +430,11 @@ You must be logged in to access all shift data.
 | PUT    | Update | `/shift/:id` | Authorization: `token` | JSON |
 | DELETE | Delete | `/shift/:id` | Authorization: `token` | none |
 
-#### **Example**
+<br>
+
+#### **Example Request**
 
 ```js
-// Request
-
 const getShifts = async (token) => {
 	const baseurl = process.env.BASE_URL;
 
@@ -405,9 +455,11 @@ const getShifts = async (token) => {
 };
 ```
 
-```json
-// Response
+<br>
 
+#### **Example Response**
+
+```json
 [
 	{
 		"id": 1,
@@ -424,7 +476,13 @@ const getShifts = async (token) => {
 ]
 ```
 
+<br>
+<br>
+<br>
+
 # Credits
+
+<br>
 
 [Joe Rehfuss](https://github.com/Rufasa85)<br>
 Creator / Tech Lead
@@ -434,6 +492,10 @@ Developer
 
 [Eli Wood](https://github.com/MrEliWood)<br>
 Developer
+
+<br>
+<br>
+<br>
 
 # Questions
 
