@@ -31,7 +31,7 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 
 	// generate orders
 	for (let i = 0; i < numOrders; i++) {
-		const randomCustomerId = faker.number.int({ min: 1, max: numCustomers });
+		const randomCustomerId = i % 2 === 0 ? null : faker.number.int({ min: 1, max: numCustomers });
 		const randomShiftId = faker.number.int({ min: 1, max: numShifts });
 
 		orders.push({
@@ -60,8 +60,7 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 
 		shiftItems.push({
 			ShiftId: shiftId,
-			ItemId: itemId,
-			quantity: faker.number.int({ min: 10, max: 2000 })
+			ItemId: itemId
 		});
 	}
 
@@ -75,8 +74,7 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 
 		orderItems.push({
 			OrderId: orderId,
-			ItemId: itemId,
-			quantity: faker.number.int({ min: 1, max: 3 })
+			ItemId: itemId
 		});
 	}
 

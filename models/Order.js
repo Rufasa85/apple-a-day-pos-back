@@ -7,7 +7,7 @@ Order.init(
 	{
 		CustomerId: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: true
 		},
 
 		ShiftId: {

@@ -1,0 +1,39 @@
+:root {
+	/* colors */
+	--light: white;
+	--light90: rgba(255, 255, 255, 0.9);
+	--light75: rgba(255, 255, 255, 0.75);
+	--light50: rgba(255, 255, 255, 0.5);
+	--light25: rgba(255, 255, 255, 0.25);
+	--light10: rgba(255, 255, 255, 0.1);
+
+	--dark: black;
+	--dark90: rgba(0, 0, 0, 0.9);
+	--dark75: rgba(0, 0, 0, 0.75);
+	--dark50: rgba(0, 0, 0, 0.5);
+	--dark25: rgba(0, 0, 0, 0.25);
+	--dark10: rgba(0, 0, 0, 0.1);
+
+	--gray: gray;
+	--lightgray: rgb(215, 215, 215);
+	--darkgray: rgb(30, 30, 30);
+
+	--accent: salmon;
+	--accent90: rgb(250, 128, 114, 0.9);
+	--accent75: rgb(250, 128, 114, 0.75);
+	--accent50: rgb(250, 128, 114, 0.5);
+	--accent25: rgb(250, 128, 114, 0.25);
+	--accent10: rgb(250, 128, 114, 0.1);
+
+	--alert: rgb(220, 0, 0);
+	--success: rgb(0, 180, 0);
+
+	/* sizes */
+	--puny: 3px;
+	--tiny: 5px;
+	--small: 12px;
+	--medium: 24px;
+	--large: 36px;
+	--huge: 48px;
+	--giant: 120px;
+}

@@ -15,12 +15,6 @@ OrderItem.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			unique: false
-		},
-
-		quantity: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			defaultValue: 1
 		}
 	},
 	{

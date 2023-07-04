@@ -54,21 +54,21 @@ Create a `.env` file at the root of this directory.
 
 Your file structure should look something like this:
 
-apple-a-day-pos-back<br>
-├ config<br>
-├ controllers<br>
-├ db<br>
-├ models<br>
-├ node_modules<br>
-├ public<br>
-├ seed<br>
-├ `.env`<br>
-├ .gitignore<br>
-├ cors.json<br>
-├ package-lock.json<br>
-├ package.json<br>
-├ README.md<br>
-└ server.js<br>
+> apple-a-day-pos-back<br>
+> ├ config<br>
+> ├ controllers<br>
+> ├ db<br>
+> ├ models<br>
+> ├ node_modules<br>
+> ├ public<br>
+> ├ seed<br>
+> ├ `.env`<br>
+> ├ .gitignore<br>
+> ├ cors.json<br>
+> ├ package-lock.json<br>
+> ├ package.json<br>
+> ├ README.md<br>
+> └ server.js<br>
 
 <br>
 
@@ -439,5 +439,45 @@ Developer
 
 [Rufasa85 on GitHub](https://github.com/Rufasa85)
 
-<!-- styling for html elements -->
-<link rel="stylesheet" href="./public/styles/readme.css">
+<style>
+    h1 {
+	margin-top: 60px;
+    }
+
+    h1:first-of-type {
+        margin-top: 0px;
+    }
+
+    h2,
+    h3,
+    h4 {
+        margin-top: 30px;
+    }
+
+    ul ul {
+        padding-bottom: 12px;
+    }
+
+    .warning {
+        display: flex;
+        flex-direction: column;
+        background: hsl(0, 100%, 50%, 25%);
+        border: 1px solid red;
+        border-radius: 3px;
+        padding: 20px;
+    }
+
+    .warning p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .fileTree {
+        background: hsl(210, 10%, 25%);
+        padding: 20px;
+    }
+
+    .fileTree p {
+        margin: 0;
+    }
+</style>
