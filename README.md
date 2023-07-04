@@ -1,7 +1,5 @@
 # apple-a-day-pos-back
 
-<br>
-
 ## Description
 
 Backend for the Apple A Day point of sale system.
@@ -21,7 +19,6 @@ Backend for the Apple A Day point of sale system.
 -  [Credits](#credits)
 -  [Questions](#questions)
 
-<br>
 <br>
 <br>
 
@@ -47,7 +44,6 @@ This will install the following dependencies:
 -  [nodemon](https://www.npmjs.com/package/nodemon)
 -  [sequelize](https://www.npmjs.com/package/sequelize)
 
-<br>
 <br>
 
 ## Environment Variables
@@ -96,7 +92,6 @@ Add the following variables to the file:
 | `JWT_SECRET`   | **\*\*\*\*\*\*\*\*** | A passphrase used for signing and decoding jsonwebtokens |
 
 <br>
-<br>
 
 ## Database
 
@@ -106,7 +101,6 @@ npm run resetdb
 
 This script drops the **apple_a_day_pos_db** database, if it exists, then creates a new one.
 
-<br>
 <br>
 
 ## Seeds
@@ -157,11 +151,8 @@ console.log(seeds.customers.length);
 
 <br>
 <br>
-<br>
 
 # Usage
-
-<br>
 
 ## Start the Server
 
@@ -181,7 +172,6 @@ npm run dev
 
 This script runs `server.js` with [nodemon](https://www.npmjs.com/package/nodemon) which restarts the server on every file save.
 
-<br>
 <br>
 
 ## Routes
@@ -478,11 +468,8 @@ const getShifts = async (token) => {
 
 <br>
 <br>
-<br>
 
 # Credits
-
-<br>
 
 [Joe Rehfuss](https://github.com/Rufasa85)<br>
 Creator / Tech Lead
@@ -493,7 +480,6 @@ Developer
 [Eli Wood](https://github.com/MrEliWood)<br>
 Developer
 
-<br>
 <br>
 <br>
 
