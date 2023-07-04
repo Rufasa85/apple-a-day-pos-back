@@ -96,9 +96,9 @@ This script drops the **apple_a_day_pos_db** database, if it exists, then create
 npm run seed
 ```
 
-<div class="warning">
-    <p><strong>⚠️ WARNING</strong><p>
-    <p>Running this script will reset your database, deleting any existing data.</p>
+<div style="display: flex; flex-direction: column; background: hsl(0, 100%, 50%, 25%); border: 1px solid red; border-radius: 3px; padding: 20px;">
+    <p style="margin: 0; padding: 0;"><strong>⚠️ WARNING</strong><p>
+    <p style="margin: 0; padding: 0;">Running this script will reset your database, deleting any existing data.</p>
 </div>
 
 ### Number of Seeds
@@ -438,46 +438,3 @@ Developer
 # Questions
 
 [Rufasa85 on GitHub](https://github.com/Rufasa85)
-
-<style>
-    h1 {
-	margin-top: 60px;
-    }
-
-    h1:first-of-type {
-        margin-top: 0px;
-    }
-
-    h2,
-    h3,
-    h4 {
-        margin-top: 30px;
-    }
-
-    ul ul {
-        padding-bottom: 12px;
-    }
-
-    .warning {
-        display: flex;
-        flex-direction: column;
-        background: hsl(0, 100%, 50%, 25%);
-        border: 1px solid red;
-        border-radius: 3px;
-        padding: 20px;
-    }
-
-    .warning p {
-        margin: 0;
-        padding: 0;
-    }
-
-    .fileTree {
-        background: hsl(210, 10%, 25%);
-        padding: 20px;
-    }
-
-    .fileTree p {
-        margin: 0;
-    }
-</style>
