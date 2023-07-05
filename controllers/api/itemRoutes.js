@@ -6,6 +6,7 @@ dotenv.config();
 // import all models to easily manipulate includes
 // remove unused models before deployment
 import { Customer, Order, Shift, Item } from '../../models/index.js';
+import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
 
@@ -45,10 +46,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new item
-router.post('/', async (req, res) => {
+//TODO: replace all auth with this piece of middleware
+router.post('/',apiAuth,  async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const item = await Item.create(req.body);
 		if (!item) return res.status(400).json({ error: 'This item could not be created.' });
 
