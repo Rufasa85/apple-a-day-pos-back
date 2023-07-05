@@ -6,7 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
 		<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
 
 		<link rel="stylesheet" href="./assets/styles/variables.css" />
@@ -24,109 +23,192 @@
 			</header>
 
 			<nav id="model-nav" class="nav">
-				<button class="nav-item active">
-					<i class="fi fi-rr-user"></i>
-					<h3>User</h3>
+				<button class="nav-item" data-model="user">
+					<i class="fi fi-rr-user" data-model="user"></i>
+					<h3 data-model="user">User</h3>
 				</button>
 
-				<button class="nav-item">
-					<i class="fi fi-rr-users"></i>
-					<h3>Customer</h3>
+				<button class="nav-item" data-model="customer">
+					<i class="fi fi-rr-users" data-model="customer"></i>
+					<h3 data-model="customer">Customer</h3>
 				</button>
 
-				<button class="nav-item">
-					<i class="fi fi-rr-soup"></i>
-					<h3>Item</h3>
+				<button class="nav-item" data-model="item">
+					<i class="fi fi-rr-soup" data-model="item"></i>
+					<h3 data-model="item">Item</h3>
 				</button>
 
-				<button class="nav-item">
-					<i class="fi fi-rr-cart-shopping-fast"></i>
-					<h3>Order</h3>
+				<button class="nav-item" data-model="order">
+					<i class="fi fi-rr-cart-shopping-fast" data-model="order"></i>
+					<h3 data-model="order">Order</h3>
 				</button>
 
-				<button class="nav-item">
-					<i class="fi fi-rr-calendar-day"></i>
-					<h3>Shift</h3>
+				<button class="nav-item" data-model="shift">
+					<i class="fi fi-rr-calendar-day" data-model="order"></i>
+					<h3 data-model="order">Shift</h3>
 				</button>
 			</nav>
 		</section>
 
 		<section id="route-nav-panel" class="nav-panel">
 			<nav id="route-nav" class="nav">
-				<button class="nav-item">
-					<h3>GET</h3>
+				<button class="nav-item" data-route="get">
+					<h3 data-route="get">GET</h3>
 
-					<span id="get-options" class="sub-nav">
-						<h4 id="get-option-all" class="sub-nav-item active">all</h4>
-						<h4 id="get-option-one" class="sub-nav-item">one</h4>
+					<span id="get-options" class="sub-nav" data-route="get">
+						<h4 id="get-option-all" class="sub-nav-item active" data-route="get">all</h4>
+						<h4 id="get-option-one" class="sub-nav-item" data-route="get">one</h4>
 					</span>
 				</button>
 
-				<button class="nav-item active">
-					<h3>POST</h3>
+				<button class="nav-item" data-route="post">
+					<h3 data-route="post">POST</h3>
 				</button>
 
-				<button class="nav-item">
-					<h3>PUT</h3>
+				<button class="nav-item" data-route="put">
+					<h3 data-route="put">PUT</h3>
 				</button>
 
-				<button class="nav-item">
-					<h3>DELETE</h3>
+				<button class="nav-item" data-route="delete">
+					<h3 data-route="delete">DELETE</h3>
 				</button>
 			</nav>
 		</section>
 
-		<section id="user-post" class="details">
+		<main id="user-post" class="details" data-model="user" data-route="post">
 			<header class="details-header">
-				<h3 class="route-path">
-					<span>/</span>
-					api
-					<span>/</span>
-					user
-					<span>/</span>
-					login
-				</h3>
+				<section class="details-section">
+					<code class="route-path">
+						<span>/</span>
+						api
+						<span>/</span>
+						user
+						<span>/</span>
+						login
+					</code>
 
-				<div class="tooltip">
-					<button class="copy-to-clipboard-button">
-						<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
+					<div class="tooltip">
+						<button class="copy-to-clipboard-button">
+							<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
 
-						<i class="fi fi-rr-copy-alt"></i>
-					</button>
-				</div>
+							<i class="fi fi-rr-copy-alt"></i>
+						</button>
+					</div>
+				</section>
 			</header>
 
 			<main class="details-main">
-				<section class="example">
-					<pre><code class="code">// Example Request
+				<section id="user-post-body" class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Headers</h3>
+						<h3 class="details-section-header-type">None</h3>
+					</header>
+				</section>
 
-const login = async () => {
-    const baseurl = process.env.BASE_URL;
+				<section id="user-post-body" class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Body</h3>
+						<h3 class="details-section-header-type">JSON</h3>
+					</header>
 
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({ password: 'secret' })
-    };
+					<main class="details-section-main">
+						<pre><code>{
+  "password": "********"
+}
+</code></pre>
 
-    try {
-        const res = await fetch(baseurl + '/api/user/login', options);
-        const data = await res.json();
+						<div class="tooltip">
+							<button class="copy-to-clipboard-button">
+								<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
 
-        return data;
-    } catch (error) {
-        console.error(error);
-    }
-};</code></pre>
+								<i class="fi fi-rr-copy-alt"></i>
+							</button>
+						</div>
+					</main>
+				</section>
+
+				<section id="user-post-response" class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Response</h3>
+						<h3 class="details-section-header-type">JSON</h3>
+					</header>
+
+					<main class="details-section-main">
+						<pre><code>{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+}
+</code></pre>
+					</main>
 				</section>
 			</main>
-		</section>
+		</main>
+
+		<main id="customer-get" class="details hidden" data-model="customer" data-route="get">
+			<h1>customer GET</h1>
+		</main>
+
+		<main id="customer-post" class="details hidden" data-model="customer" data-route="post">
+			<h1>customer POST</h1>
+		</main>
+
+		<main id="customer-put" class="details hidden" data-model="customer" data-route="put">
+			<h1>customer PUT</h1>
+		</main>
+
+		<main id="customer-update" class="details hidden" data-model="customer" data-route="delete">
+			<h1>customer DELETE</h1>
+		</main>
+
+		<main id="item-get" class="details hidden" data-model="item" data-route="get">
+			<h1>item GET</h1>
+		</main>
+
+		<main id="item-post" class="details hidden" data-model="item" data-route="post">
+			<h1>item POST</h1>
+		</main>
+
+		<main id="item-put" class="details hidden" data-model="item" data-route="put">
+			<h1>item PUT</h1>
+		</main>
+
+		<main id="item-update" class="details hidden" data-model="item" data-route="delete">
+			<h1>item DELETE</h1>
+		</main>
+
+		<main id="order-get" class="details hidden" data-model="order" data-route="get">
+			<h1>order GET</h1>
+		</main>
+
+		<main id="order-post" class="details hidden" data-model="order" data-route="post">
+			<h1>order POST</h1>
+		</main>
+
+		<main id="order-put" class="details hidden" data-model="order" data-route="put">
+			<h1>order PUT</h1>
+		</main>
+
+		<main id="order-update" class="details hidden" data-model="order" data-route="delete">
+			<h1>order DELETE</h1>
+		</main>
+
+		<main id="shift-get" class="details hidden" data-model="shift" data-route="get">
+			<h1>shift GET</h1>
+		</main>
+
+		<main id="shift-post" class="details hidden" data-model="shift" data-route="post">
+			<h1>shift POST</h1>
+		</main>
+
+		<main id="shift-put" class="details hidden" data-model="shift" data-route="put">
+			<h1>shift PUT</h1>
+		</main>
+
+		<main id="shift-update" class="details hidden" data-model="shift" data-route="delete">
+			<h1>shift DELETE</h1>
+		</main>
 
 		<div id="icon-credit">Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-		<script>
-			hljs.highlightAll();
-		</script>
 		<script src="./assets/scripts/script.js"></script>
 	</body>
 </html>

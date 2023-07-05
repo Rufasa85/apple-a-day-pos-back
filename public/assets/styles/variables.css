@@ -23,7 +23,13 @@
 	--success: rgb(0, 180, 0);
 
 	--codeBackground: rgb(24, 24, 24);
-	--codeColor: rgb(193, 193, 193);
+	--codeGreen: rgb(88, 138, 67);
+	--codeYellow: rgb(254, 209, 11);
+	--codePurple: rgb(207, 83, 205);
+	--codeBlue: rgb(26, 138, 254);
+	--codeLightBlue: rgb(139, 208, 250);
+	--codeDarkBlue: rgb(69, 136, 202);
+	--codeBrown: rgb(194, 125, 101);
 
 	/* sizes */
 	--puny: 3px;
@@ -44,4 +50,7 @@
 
 	/* icons */
 	--iconSize: 22px;
+
+	/* misc */
+	--site-header-height: calc(var(--huge) + var(--medium) + var(--iconSize) + var(--medium) + var(--huge));
 }

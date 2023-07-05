@@ -1,5 +1,4 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -46,8 +45,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new item
-//TODO: replace all auth with this piece of middleware
-router.post('/',apiAuth,  async (req, res) => {
+router.post('/', apiAuth, async (req, res) => {
 	try {
 		const item = await Item.create(req.body);
 		if (!item) return res.status(400).json({ error: 'This item could not be created.' });
@@ -59,10 +57,8 @@ router.post('/',apiAuth,  async (req, res) => {
 });
 
 // PUT update item
-router.put('/:id', async (req, res) => {
+router.put('/:id', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			where: { id: req.params.id }
 		};
@@ -77,10 +73,8 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE item
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			where: { id: req.params.id }
 		};

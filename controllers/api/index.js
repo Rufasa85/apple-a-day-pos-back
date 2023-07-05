@@ -8,10 +8,10 @@ import userRoutes from './userRoutes.js';
 
 const router = express.Router();
 
-router.use('/customer', customerRoutes);
-router.use('/item', itemRoutes);
-router.use('/order', orderRoutes);
-router.use('/shift', shiftRoutes);
-router.use('/user', userRoutes);
+router.use('/customers', customerRoutes);
+router.use('/items', itemRoutes);
+router.use('/orders', orderRoutes);
+router.use('/shifts', shiftRoutes);
+router.use('/users', userRoutes);
 
 export default router;

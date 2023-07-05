@@ -1,19 +1,17 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
 // import all models to easily manipulate includes
 // remove unused models before deployment
 import { Customer, Order, Shift, Item } from '../../models/index.js';
+import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
 
 // GET all shifts
-router.get('/', async (req, res) => {
+router.get('/', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			// include: { all: true, nested: true }
 		};
@@ -28,10 +26,8 @@ router.get('/', async (req, res) => {
 });
 
 // GET one shift
-router.get('/:id', async (req, res) => {
+router.get('/:id', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			// include: { all: true, nested: true }
 			include: { all: true }
@@ -47,10 +43,8 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new shift
-router.post('/', async (req, res) => {
+router.post('/', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const shift = await Shift.create(req.body);
 		if (!shift) return res.status(400).json({ error: 'This shift could not be created.' });
 
@@ -61,10 +55,8 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update shift
-router.put('/:id', async (req, res) => {
+router.put('/:id', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			where: { id: req.params.id }
 		};
@@ -79,10 +71,8 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE shift
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', apiAuth, async (req, res) => {
 	try {
-		const token = jwt.verify(req.headers?.authorization, process.env.JWT_SECRET);
-
 		const options = {
 			where: { id: req.params.id }
 		};

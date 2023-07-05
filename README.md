@@ -188,9 +188,9 @@ All routes start with `/api`.
 
 There is one user route for logging in.
 
-| Method | Result | Route         | Headers | Body |
-| :----- | :----- | :------------ | :------ | :--- |
-| POST   | Login  | `/user/login` | none    | JSON |
+| Method | Result | Route          | Headers | Body |
+| :----- | :----- | :------------- | :------ | :--- |
+| POST   | Login  | `/users/login` | none    | JSON |
 
 <br>
 
@@ -206,7 +206,7 @@ const login = async () => {
 	};
 
 	try {
-		const res = await fetch(baseurl + '/api/user/login', options);
+		const res = await fetch(baseurl + '/api/users/login', options);
 		const data = await res.json();
 
 		return data;
@@ -232,13 +232,13 @@ const login = async () => {
 
 You must be logged in to access all customer data.
 
-| Method | Result | Route           | Headers                | Body |
-| :----- | :----- | :-------------- | :--------------------- | :--- |
-| GET    | All    | `/customer`     | Authorization: `token` | none |
-| GET    | One    | `/customer/:id` | Authorization: `token` | none |
-| POST   | New    | `/customer`     | Authorization: `token` | JSON |
-| PUT    | Update | `/customer/:id` | Authorization: `token` | JSON |
-| DELETE | Delete | `/customer/:id` | Authorization: `token` | none |
+| Method | Result | Route            | Headers                | Body |
+| :----- | :----- | :--------------- | :--------------------- | :--- |
+| GET    | All    | `/customers`     | Authorization: `token` | none |
+| GET    | One    | `/customers/:id` | Authorization: `token` | none |
+| POST   | New    | `/customers`     | Authorization: `token` | JSON |
+| PUT    | Update | `/customers/:id` | Authorization: `token` | JSON |
+| DELETE | Delete | `/customers/:id` | Authorization: `token` | none |
 
 <br>
 
@@ -255,7 +255,7 @@ const getCustomers = async (token) => {
 	};
 
 	try {
-		const res = await fetch(baseurl + '/api/customer', options);
+		const res = await fetch(baseurl + '/api/customers', options);
 		const data = await res.json();
 
 		return data;
@@ -296,13 +296,13 @@ const getCustomers = async (token) => {
 
 You must be logged in to add, update, or delete items.
 
-| Method | Result | Route       | Headers                | Body |
-| :----- | :----- | :---------- | :--------------------- | :--- |
-| GET    | All    | `/item`     | none                   | none |
-| GET    | One    | `/item/:id` | none                   | none |
-| POST   | New    | `/item`     | Authorization: `token` | JSON |
-| PUT    | Update | `/item/:id` | Authorization: `token` | JSON |
-| DELETE | Delete | `/item/:id` | Authorization: `token` | none |
+| Method | Result | Route        | Headers                | Body |
+| :----- | :----- | :----------- | :--------------------- | :--- |
+| GET    | All    | `/items`     | none                   | none |
+| GET    | One    | `/items/:id` | none                   | none |
+| POST   | New    | `/items`     | Authorization: `token` | JSON |
+| PUT    | Update | `/items/:id` | Authorization: `token` | JSON |
+| DELETE | Delete | `/items/:id` | Authorization: `token` | none |
 
 <br>
 
@@ -313,7 +313,7 @@ const getItems = async () => {
 	const baseurl = process.env.BASE_URL;
 
 	try {
-		const res = await fetch(baseurl + '/api/item');
+		const res = await fetch(baseurl + '/api/items');
 		const data = await res.json();
 
 		return data;
@@ -350,13 +350,13 @@ const getItems = async () => {
 
 You must be logged in to access all order data.
 
-| Method | Result | Route        | Headers                | Body |
-| :----- | :----- | :----------- | :--------------------- | :--- |
-| GET    | All    | `/order`     | Authorization: `token` | none |
-| GET    | One    | `/order/:id` | Authorization: `token` | none |
-| POST   | New    | `/order`     | Authorization: `token` | JSON |
-| PUT    | Update | `/order/:id` | Authorization: `token` | JSON |
-| DELETE | Delete | `/order/:id` | Authorization: `token` | none |
+| Method | Result | Route         | Headers                | Body |
+| :----- | :----- | :------------ | :--------------------- | :--- |
+| GET    | All    | `/orders`     | Authorization: `token` | none |
+| GET    | One    | `/orders/:id` | Authorization: `token` | none |
+| POST   | New    | `/orders`     | Authorization: `token` | JSON |
+| PUT    | Update | `/orders/:id` | Authorization: `token` | JSON |
+| DELETE | Delete | `/orders/:id` | Authorization: `token` | none |
 
 <br>
 
@@ -373,7 +373,7 @@ const getOrders = async (token) => {
 	};
 
 	try {
-		const res = await fetch(baseurl + '/api/order', options);
+		const res = await fetch(baseurl + '/api/orders', options);
 		const data = await res.json();
 
 		return data;
@@ -412,13 +412,13 @@ const getOrders = async (token) => {
 
 You must be logged in to access all shift data.
 
-| Method | Result | Route        | Headers                | Body |
-| :----- | :----- | :----------- | :--------------------- | :--- |
-| GET    | All    | `/shift`     | Authorization: `token` | none |
-| GET    | One    | `/shift/:id` | Authorization: `token` | none |
-| POST   | New    | `/shift`     | Authorization: `token` | JSON |
-| PUT    | Update | `/shift/:id` | Authorization: `token` | JSON |
-| DELETE | Delete | `/shift/:id` | Authorization: `token` | none |
+| Method | Result | Route         | Headers                | Body |
+| :----- | :----- | :------------ | :--------------------- | :--- |
+| GET    | All    | `/shifts`     | Authorization: `token` | none |
+| GET    | One    | `/shifts/:id` | Authorization: `token` | none |
+| POST   | New    | `/shifts`     | Authorization: `token` | JSON |
+| PUT    | Update | `/shifts/:id` | Authorization: `token` | JSON |
+| DELETE | Delete | `/shifts/:id` | Authorization: `token` | none |
 
 <br>
 
@@ -435,7 +435,7 @@ const getShifts = async (token) => {
 	};
 
 	try {
-		const res = await fetch(baseurl + '/api/shift', options);
+		const res = await fetch(baseurl + '/api/shifts', options);
 		const data = await res.json();
 
 		return data;
