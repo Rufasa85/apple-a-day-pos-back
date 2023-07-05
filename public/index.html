@@ -25,39 +25,39 @@
 			<nav id="model-nav" class="nav">
 				<button class="nav-item" data-model="user">
 					<i class="fi fi-rr-user" data-model="user"></i>
-					<h3 data-model="user">User</h3>
+					<h3 data-model="user">Users</h3>
 				</button>
 
 				<button class="nav-item" data-model="customer">
 					<i class="fi fi-rr-users" data-model="customer"></i>
-					<h3 data-model="customer">Customer</h3>
+					<h3 data-model="customer">Customers</h3>
 				</button>
 
 				<button class="nav-item" data-model="item">
 					<i class="fi fi-rr-soup" data-model="item"></i>
-					<h3 data-model="item">Item</h3>
+					<h3 data-model="item">Items</h3>
 				</button>
 
 				<button class="nav-item" data-model="order">
 					<i class="fi fi-rr-cart-shopping-fast" data-model="order"></i>
-					<h3 data-model="order">Order</h3>
+					<h3 data-model="order">Orders</h3>
 				</button>
 
 				<button class="nav-item" data-model="shift">
-					<i class="fi fi-rr-calendar-day" data-model="order"></i>
-					<h3 data-model="order">Shift</h3>
+					<i class="fi fi-rr-calendar-day" data-model="shift"></i>
+					<h3 data-model="shift">Shifts</h3>
 				</button>
 			</nav>
 		</section>
 
 		<section id="route-nav-panel" class="nav-panel">
 			<nav id="route-nav" class="nav">
-				<button class="nav-item" data-route="get">
-					<h3 data-route="get">GET</h3>
+				<button class="nav-item" data-route="get" data-sub="all">
+					<h3 data-route="get" data-sub="all">GET</h3>
 
-					<span id="get-options" class="sub-nav" data-route="get">
-						<h4 id="get-option-all" class="sub-nav-item active" data-route="get">all</h4>
-						<h4 id="get-option-one" class="sub-nav-item" data-route="get">one</h4>
+					<span id="get-options" class="sub-nav" data-route="get" data-sub="all">
+						<h4 id="get-option-all" class="sub-nav-item active" data-route="get" data-sub="all">all</h4>
+						<h4 id="get-option-one" class="sub-nav-item" data-route="get" data-sub="one">one</h4>
 					</span>
 				</button>
 
@@ -78,50 +78,50 @@
 		<main id="user-post" class="details" data-model="user" data-route="post">
 			<header class="details-header">
 				<section class="details-section">
-					<code class="route-path">
+					<code id="user-post-route-text" class="route-path">
 						<span>/</span>
 						api
 						<span>/</span>
-						user
+						users
 						<span>/</span>
 						login
 					</code>
 
 					<div class="tooltip">
 						<button class="copy-to-clipboard-button">
-							<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
+							<span id="user-post-route-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-							<i class="fi fi-rr-copy-alt"></i>
+							<i class="fi fi-rr-copy-alt" data-reference="user-post-route-text"></i>
 						</button>
 					</div>
 				</section>
 			</header>
 
 			<main class="details-main">
-				<section id="user-post-body" class="details-section">
+				<section class="details-section">
 					<header class="details-section-header">
 						<h3 class="details-section-header-heading">Headers</h3>
 						<h3 class="details-section-header-type">None</h3>
 					</header>
 				</section>
 
-				<section id="user-post-body" class="details-section">
+				<section class="details-section">
 					<header class="details-section-header">
 						<h3 class="details-section-header-heading">Body</h3>
 						<h3 class="details-section-header-type">JSON</h3>
 					</header>
 
 					<main class="details-section-main">
-						<pre><code>{
+						<pre><code id="user-post-body-text">{
   "password": "********"
 }
 </code></pre>
 
 						<div class="tooltip">
 							<button class="copy-to-clipboard-button">
-								<span id="user-get-tooltip-text" class="tooltip-text">Copy to clipboard</span>
+								<span id="user-post-body-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-								<i class="fi fi-rr-copy-alt"></i>
+								<i class="fi fi-rr-copy-alt" data-reference="user-post-body-text"></i>
 							</button>
 						</div>
 					</main>
@@ -134,17 +134,92 @@
 					</header>
 
 					<main class="details-section-main">
-						<pre><code>{
+						<pre><code id="user-post-response-text">{
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 </code></pre>
+
+						<div class="tooltip">
+							<button class="copy-to-clipboard-button">
+								<span id="user-post-response-text-tooltip" class="tooltip-text">Copy to clipboard</span>
+
+								<i class="fi fi-rr-copy-alt" data-reference="user-post-response-text"></i>
+							</button>
+						</div>
 					</main>
 				</section>
 			</main>
 		</main>
 
-		<main id="customer-get" class="details hidden" data-model="customer" data-route="get">
-			<h1>customer GET</h1>
+		<main id="customer-get-all" class="details hidden" data-model="customer" data-route="get" data-sub="all">
+			<header class="details-header">
+				<section class="details-section">
+					<code id="customer-get-all-route-text" class="route-path">
+						<span>/</span>
+						api
+						<span>/</span>
+					</code>
+
+					<div class="tooltip">
+						<button class="copy-to-clipboard-button">
+							<span id="customer-get-all-route-text-tooltip" class="tooltip-text">Copy to clipboard</span>
+
+							<i class="fi fi-rr-copy-alt" data-reference="customer-get-all-route-text"></i>
+						</button>
+					</div>
+				</section>
+			</header>
+
+			<main class="details-main">
+				<section class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Headers</h3>
+						<h3 class="details-section-header-type">None</h3>
+					</header>
+				</section>
+
+				<section id="customer-get-all-body" class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Body</h3>
+						<h3 class="details-section-header-type">JSON</h3>
+					</header>
+
+					<main class="details-section-main">
+						<pre><code id="customer-get-all-body-text"></code></pre>
+
+						<div class="tooltip">
+							<button class="copy-to-clipboard-button">
+								<span id="customer-get-all-body-text-tooltip" class="tooltip-text">Copy to clipboard</span>
+
+								<i class="fi fi-rr-copy-alt" data-reference="customer-get-all-body-text"></i>
+							</button>
+						</div>
+					</main>
+				</section>
+
+				<section id="customer-get-all-response" class="details-section">
+					<header class="details-section-header">
+						<h3 class="details-section-header-heading">Response</h3>
+						<h3 class="details-section-header-type">JSON</h3>
+					</header>
+
+					<main class="details-section-main">
+						<pre><code id="customer-get-all-response-text"></code></pre>
+
+						<div class="tooltip">
+							<button class="copy-to-clipboard-button">
+								<span id="customer-get-all-response-text-tooltip" class="tooltip-text">Copy to clipboard</span>
+
+								<i class="fi fi-rr-copy-alt" data-reference="customer-get-all-response-text"></i>
+							</button>
+						</div>
+					</main>
+				</section>
+			</main>
+		</main>
+
+		<main id="customer-get-one" class="details hidden" data-model="customer" data-route="get" data-sub="one">
+			<h1>customer GET one</h1>
 		</main>
 
 		<main id="customer-post" class="details hidden" data-model="customer" data-route="post">
