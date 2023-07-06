@@ -50,7 +50,7 @@ router.post('/', apiAuth, async (req, res) => {
 		const item = await Item.create(req.body);
 		if (!item) return res.status(400).json({ error: 'This item could not be created.' });
 
-		return res.status(200).json(item);
+		return res.status(200).json({ message: 'item created!', item });
 	} catch (error) {
 		return res.status(500).json({ error });
 	}

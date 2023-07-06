@@ -75,11 +75,13 @@ const renderContent = (model, route, sub) => {
 		const routeName = element.dataset.route;
 		const subName = element.dataset.sub;
 
+		if (sub === null) return;
+
 		if (routeName === route) {
 			element.classList.remove('active');
 		}
 
-		if (routeName === route && subName === sub) {
+		if (subName === sub) {
 			element.classList.add('active');
 		}
 	});
@@ -87,10 +89,10 @@ const renderContent = (model, route, sub) => {
 	modelNav.forEach((element) => {
 		const modelName = element.dataset.model;
 
+		element.classList.remove('active');
+
 		if (modelName === model) {
 			element.classList.add('active');
-		} else {
-			element.classList.remove('active');
 		}
 	});
 };
@@ -98,7 +100,7 @@ const renderContent = (model, route, sub) => {
 const handleNavClick = (e) => {
 	activeModel = e.target.dataset.model || activeModel;
 	activeRoute = e.target.dataset.route || activeRoute;
-	activeSub = e.target.dataset.sub || null;
+	activeSub = e.target.dataset.sub || activeSub;
 
 	renderContent(activeModel, activeRoute, activeSub);
 };

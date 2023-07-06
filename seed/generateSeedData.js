@@ -60,7 +60,8 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 
 		shiftItems.push({
 			ShiftId: shiftId,
-			ItemId: itemId
+			ItemId: itemId,
+			quantity: Math.floor(Math.random() * numItemsPerShift)
 		});
 	}
 
@@ -74,7 +75,8 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 
 		orderItems.push({
 			OrderId: orderId,
-			ItemId: itemId
+			ItemId: itemId,
+			quantity: Math.floor(Math.random() * numItemsPerOrder)
 		});
 	}
 

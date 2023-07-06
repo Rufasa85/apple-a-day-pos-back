@@ -48,7 +48,7 @@ router.post('/', apiAuth, async (req, res) => {
 		const shift = await Shift.create(req.body);
 		if (!shift) return res.status(400).json({ error: 'This shift could not be created.' });
 
-		return res.status(200).json(shift);
+		return res.status(200).json({ message: 'shift created!', shift });
 	} catch (error) {
 		return res.status(500).json({ error });
 	}

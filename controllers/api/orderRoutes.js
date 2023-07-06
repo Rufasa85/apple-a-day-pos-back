@@ -49,7 +49,7 @@ router.post('/', apiAuth, async (req, res) => {
 		const order = await Order.create(req.body);
 		if (!order) return res.status(400).json({ error: 'This order could not be created.' });
 
-		return res.status(200).json(order);
+		return res.status(200).json({ message: 'order created!', order });
 	} catch (error) {
 		return res.status(500).json({ error });
 	}
