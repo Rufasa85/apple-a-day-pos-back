@@ -101,6 +101,9 @@ npm run resetdb
 
 This script drops the **apple_a_day_pos_db** database, if it exists, then creates a new one.
 
+> **Warning**
+> This script deletes all existing data.
+
 <br>
 
 ## Seeds
@@ -109,8 +112,10 @@ This script drops the **apple_a_day_pos_db** database, if it exists, then create
 npm run seed
 ```
 
+This script adds a collection of random data to your database.
+
 > **Warning**
-> Running this script will reset your database, deleting any existing data.
+> This script deletes all existing data.
 
 <br>
 
