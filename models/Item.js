@@ -11,7 +11,8 @@ Item.init(
 		}
 	},
 	{
-		sequelize
+		sequelize,
+    timestamps: false
 	}
 );
 

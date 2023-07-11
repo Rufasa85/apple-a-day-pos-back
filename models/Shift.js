@@ -12,7 +12,8 @@ Shift.init(
 		}
 	},
 	{
-		sequelize
+		sequelize,
+    timestamps: false
 	}
 );
 
