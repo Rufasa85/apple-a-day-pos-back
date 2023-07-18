@@ -1,10 +1,11 @@
 import express from 'express';
+import dayjs from 'dayjs';
 import dotenv from 'dotenv';
 dotenv.config();
 
 // import all models to easily manipulate includes
 // remove unused models before deployment
-import { Customer, Order, Shift, Item } from '../../models/index.js';
+import { Customer, Order, Shift, Item, ShiftItem } from '../../models/index.js';
 import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
@@ -21,6 +22,33 @@ router.get('/', apiAuth, async (req, res) => {
 
 		return res.status(200).json(shifts);
 	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error });
+	}
+});
+
+// GET today's shiftItems
+router.get('/today', async (req, res) => {
+	try {
+		const shiftOptions = {
+			where: { date: dayjs().format('YYYY-MM-DD') }
+		};
+
+		const shifts = await Shift.findAll(shiftOptions);
+		if (!shifts) return res.status(404).json({ error: 'This shift could not be found.' });
+
+		console.log(shifts);
+
+		const shiftItemOptions = {
+			where: { ShiftId: shifts[0].dataValues.id }
+		};
+
+		const shiftItems = await ShiftItem.findAll(shiftItemOptions);
+		if (!shiftItems) return res.status(404).json({ error: 'The shift items could not be found.' });
+
+		return res.status(200).json(shiftItems);
+	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -38,6 +66,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 
 		return res.status(200).json(shift);
 	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -50,6 +79,7 @@ router.post('/', apiAuth, async (req, res) => {
 
 		return res.status(200).json({ message: 'shift created!', shift });
 	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });

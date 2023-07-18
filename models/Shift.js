@@ -13,7 +13,7 @@ Shift.init(
 	},
 	{
 		sequelize,
-    timestamps: false
+		timestamps: false
 	}
 );
 
