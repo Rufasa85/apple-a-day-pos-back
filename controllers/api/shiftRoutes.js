@@ -4,7 +4,7 @@ dotenv.config();
 
 // import all models to easily manipulate includes
 // remove unused models before deployment
-import { Customer, Order, Shift, Item } from '../../models/index.js';
+import { Customer, Order, Shift, Item, OrderItem } from '../../models/index.js';
 import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', apiAuth, async (req, res) => {
 	try {
 		const options = {
-			// include: { all: true, nested: true }
+			include: [{model: Order, include: [{model: OrderItem}]}, {model: Item}]
 		};
 
 		const shifts = await Shift.findAll(options);
@@ -30,7 +30,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 	try {
 		const options = {
 			// include: { all: true, nested: true }
-			include: { all: true }
+			include: [{model: Order, include: [{model: OrderItem, include: {model: Item}}]}, {model: Item}]
 		};
 
 		const shift = await Shift.findByPk(req.params.id, options);
