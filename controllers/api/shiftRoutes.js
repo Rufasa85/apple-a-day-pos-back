@@ -32,8 +32,7 @@ router.get('/today', async (req, res) => {
 	try {
 		const options = {
 			where: { date: dayjs().format('YYYY-MM-DD') },
-			include: [{ model: Item }],
-			order: [[Item, 'createdAt', 'DESC']]
+			include: [{ model: Item }]
 		};
 
 		const shifts = await Shift.findAll(options);

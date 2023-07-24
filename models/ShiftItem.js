@@ -26,6 +26,7 @@ ShiftItem.init(
 	},
 	{
 		sequelize
+		// timestamps: false
 	}
 );
 
