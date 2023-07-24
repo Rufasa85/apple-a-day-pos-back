@@ -12,7 +12,7 @@ Item.init(
 	},
 	{
 		sequelize,
-    timestamps: false
+		timestamps: false
 	}
 );
 

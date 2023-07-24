@@ -1,10 +1,11 @@
 import express from 'express';
+import dayjs from 'dayjs';
 import dotenv from 'dotenv';
 dotenv.config();
 
 // import all models to easily manipulate includes
 // remove unused models before deployment
-import { Customer, Order, Shift, Item } from '../../models/index.js';
+import { Customer, Order, Shift, Item, ShiftItem } from '../../models/index.js';
 import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
@@ -23,6 +24,7 @@ router.get('/', async (req, res) => {
 
 		return res.status(200).json(items);
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -40,6 +42,7 @@ router.get('/:id', async (req, res) => {
 
 		return res.status(200).json(item);
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -47,11 +50,26 @@ router.get('/:id', async (req, res) => {
 // POST new item
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const item = await Item.create(req.body);
-		if (!item) return res.status(400).json({ error: 'This item could not be created.' });
+		const shiftOptions = {
+			where: { date: dayjs().format('YYYY-MM-DD') }
+		};
 
-		return res.status(200).json({ message: 'item created!', item });
+		const shift = await Shift.findOrCreate(shiftOptions);
+
+		const itemOptions = {
+			where: { name: req.body.name }
+		};
+
+		const item = await Item.findOrCreate(itemOptions);
+
+		const shiftItem = await ShiftItem.create({
+			ShiftId: shift[0].id,
+			ItemId: item[0].id
+		});
+
+		return res.status(200).json({ message: 'item created!', item, shiftItem });
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -68,6 +86,7 @@ router.put('/:id', apiAuth, async (req, res) => {
 
 		return res.status(200).json({ message: 'item updated!', item });
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -84,6 +103,7 @@ router.delete('/:id', apiAuth, async (req, res) => {
 
 		return res.status(200).json({ message: 'item deleted!', item });
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });

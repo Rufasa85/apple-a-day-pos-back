@@ -30,23 +30,16 @@ router.get('/', apiAuth, async (req, res) => {
 // GET today's shiftItems
 router.get('/today', async (req, res) => {
 	try {
-		const shiftOptions = {
-			where: { date: dayjs().format('YYYY-MM-DD') }
+		const options = {
+			where: { date: dayjs().format('YYYY-MM-DD') },
+			include: [{ model: Item }],
+			order: [[Item, 'createdAt', 'DESC']]
 		};
 
-		const shifts = await Shift.findAll(shiftOptions);
+		const shifts = await Shift.findAll(options);
 		if (!shifts) return res.status(404).json({ error: 'This shift could not be found.' });
 
-		console.log(shifts);
-
-		const shiftItemOptions = {
-			where: { ShiftId: shifts[0].dataValues.id }
-		};
-
-		const shiftItems = await ShiftItem.findAll(shiftItemOptions);
-		if (!shiftItems) return res.status(404).json({ error: 'The shift items could not be found.' });
-
-		return res.status(200).json(shiftItems);
+		return res.status(200).json(shifts[0].Items);
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ error });
