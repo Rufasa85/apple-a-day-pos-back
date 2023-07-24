@@ -1,4 +1,5 @@
 import express from 'express';
+import dayjs from 'dayjs';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 router.get('/', apiAuth, async (req, res) => {
 	try {
 		const options = {
-			include: [{model: Order, include: [{model: OrderItem}]}, {model: Item}]
+			include: [{ model: Order, include: [{ model: OrderItem }] }, { model: Item }]
 		};
 
 		const shifts = await Shift.findAll(options);
@@ -21,6 +22,25 @@ router.get('/', apiAuth, async (req, res) => {
 
 		return res.status(200).json(shifts);
 	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error });
+	}
+});
+
+// GET today's shiftItems
+router.get('/today', async (req, res) => {
+	try {
+		const options = {
+			where: { date: dayjs().format('YYYY-MM-DD') },
+			include: [{ model: Item }]
+		};
+
+		const shifts = await Shift.findAll(options);
+		if (!shifts) return res.status(404).json({ error: 'This shift could not be found.' });
+
+		return res.status(200).json(shifts[0].Items);
+	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -30,7 +50,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 	try {
 		const options = {
 			// include: { all: true, nested: true }
-			include: [{model: Order, include: [{model: OrderItem, include: {model: Item}}]}, {model: Item}]
+			include: [{ model: Order, include: [{ model: OrderItem, include: { model: Item } }] }, { model: Item }]
 		};
 
 		const shift = await Shift.findByPk(req.params.id, options);
@@ -38,6 +58,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 
 		return res.status(200).json(shift);
 	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -50,6 +71,7 @@ router.post('/', apiAuth, async (req, res) => {
 
 		return res.status(200).json({ message: 'shift created!', shift });
 	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error });
 	}
 });

@@ -17,16 +17,16 @@ ShiftItem.init(
 			unique: false
 		},
 
-    // change to stock? Do we need this?
+		// change to stock? Do we need this?
 		stock: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: true
 			// defaultValue: 1 ?
 		}
 	},
 	{
-		sequelize,
-    timestamps: false
+		sequelize
+		// timestamps: false
 	}
 );
 

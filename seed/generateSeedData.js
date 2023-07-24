@@ -68,20 +68,19 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 60, numS
 	// generate order items
 	for (let i = 0; i < numOrders; i++) {
 		if (i % numItemsPerOrder === 0) unusedItemIds = [...new Array(numItems).keys()];
-    const shiftId = orders[i].ShiftId
-    const itemIds = shiftItems.filter(shiftItem => shiftItem.ShiftId === shiftId).map(shiftItem => shiftItem.ItemId)
+		const shiftId = orders[i].ShiftId;
+		const itemIds = shiftItems.filter((shiftItem) => shiftItem.ShiftId === shiftId).map((shiftItem) => shiftItem.ItemId);
 
-		const orderId = i+1
-    
-    for (let j = 0; j < numItemsPerOrder; j++) {
-      const randomItemIdIndex = faker.number.int({ min: 0, max: itemIds.length - 1 });
-      const itemId = itemIds[randomItemIdIndex]
-      orderItems.push({
-        OrderId: orderId,
-        ItemId: itemId,
-      });
-      
-    }
+		const orderId = i + 1;
+
+		for (let j = 0; j < numItemsPerOrder; j++) {
+			const randomItemIdIndex = faker.number.int({ min: 0, max: itemIds.length - 1 });
+			const itemId = itemIds[randomItemIdIndex];
+			orderItems.push({
+				OrderId: orderId,
+				ItemId: itemId
+			});
+		}
 	}
 
 	return { customers, items, orders, shifts, shiftItems, orderItems };
