@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
-const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numShifts = 5, numItemsPerShift = 4, numItemsPerOrder = 1) => {
+const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 60, numShifts = 5, numItemsPerShift = 4, numItemsPerOrder = 2) => {
 	const customers = [];
 	const items = [];
 	const orders = [];
@@ -66,18 +66,21 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 20, numS
 	}
 
 	// generate order items
-	for (let i = 0; i < numShifts * numItemsPerOrder; i++) {
+	for (let i = 0; i < numOrders; i++) {
 		if (i % numItemsPerOrder === 0) unusedItemIds = [...new Array(numItems).keys()];
+		const shiftId = orders[i].ShiftId;
+		const itemIds = shiftItems.filter((shiftItem) => shiftItem.ShiftId === shiftId).map((shiftItem) => shiftItem.ItemId);
 
-		const orderId = Math.floor(i / numItemsPerOrder) + 1;
-		const randomItemIdIndex = faker.number.int({ min: 0, max: unusedItemIds.length - 1 });
-		const itemId = unusedItemIds.splice(randomItemIdIndex, 1)[0] + 1;
+		const orderId = i + 1;
 
-		orderItems.push({
-			OrderId: orderId,
-			ItemId: itemId
-			// quantity: Math.floor(Math.random() * numItemsPerOrder)
-		});
+		for (let j = 0; j < numItemsPerOrder; j++) {
+			const randomItemIdIndex = faker.number.int({ min: 0, max: itemIds.length - 1 });
+			const itemId = itemIds[randomItemIdIndex];
+			orderItems.push({
+				OrderId: orderId,
+				ItemId: itemId
+			});
+		}
 	}
 
 	return { customers, items, orders, shifts, shiftItems, orderItems };
