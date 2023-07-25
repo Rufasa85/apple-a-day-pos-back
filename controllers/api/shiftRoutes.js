@@ -35,10 +35,10 @@ router.get('/today', async (req, res) => {
 			include: [{ model: Item }]
 		};
 
-		const shifts = await Shift.findAll(options);
-		if (!shifts) return res.status(404).json({ error: 'This shift could not be found.' });
-
-		return res.status(200).json(shifts[0].Items);
+		const shift = await Shift.findOne(options);
+		if (!shift) return res.status(404).json({ error: 'This shift could not be found.' });
+    // I changed this! Needed shift id -HW
+		return res.status(200).json(shift);
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ error });
