@@ -41,7 +41,7 @@ const generateSeedData = (numCustomers = 10, numItems = 10, numOrders = 60, numS
 	}
 
 	// generate shifts
-	for (let i = 0; i < numShifts; i++) {
+	for (let i = 1; i <= numShifts; i++) {
 		shifts.push({
 			date: dayjs().subtract(i, 'day').toDate()
 		});
