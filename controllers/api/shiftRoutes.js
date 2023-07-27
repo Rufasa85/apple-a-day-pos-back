@@ -29,10 +29,10 @@ router.get('/', apiAuth, async (req, res) => {
 });
 
 // GET today's shiftItems
-router.get('/today', async (req, res) => {
+router.get('/today/:userId', async (req, res) => {
 	try {
 		const options = {
-			where: { date: dayjs().format('YYYY-MM-DD'), UserId: req.userId },
+			where: { date: dayjs().format('YYYY-MM-DD'), UserId: req.params.userId },
 			include: [{ model: Item }]
 		};
 
