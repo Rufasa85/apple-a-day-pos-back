@@ -5,6 +5,11 @@ class ShiftItem extends Model {}
 
 ShiftItem.init(
 	{
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
 		ShiftId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,

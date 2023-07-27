@@ -14,6 +14,7 @@ const router = express.Router();
 router.get('/', apiAuth, async (req, res) => {
 	try {
 		const options = {
+      where:{ UserId: req.userId},
 			include: [{ model: Order, include: [{ model: OrderItem }] }, { model: Item }]
 		};
 
@@ -31,7 +32,7 @@ router.get('/', apiAuth, async (req, res) => {
 router.get('/today', async (req, res) => {
 	try {
 		const options = {
-			where: { date: dayjs().format('YYYY-MM-DD') },
+			where: { date: dayjs().format('YYYY-MM-DD'), UserId: req.userId },
 			include: [{ model: Item }]
 		};
 
@@ -66,7 +67,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 // POST new shift
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const shift = await Shift.create(req.body);
+		const shift = await Shift.create({...req.body, UserId: req.userId});
 		if (!shift) return res.status(400).json({ error: 'This shift could not be created.' });
 
 		return res.status(200).json({ message: 'shift created!', shift });
