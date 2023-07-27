@@ -21,9 +21,10 @@ router.post('/login', (req, res) => {
 	}
 });
 
-router.post('/checktoken', apiAuth, (req, res) => {
+router.get('/checktoken', apiAuth, (req, res) => {
 	try {
-		return res.status(200).json(req.loggedIn);
+		const { loggedIn } = req;
+		return res.status(200).json({ loggedIn });
 	} catch (error) {
 		console.log(error);
 		return res.status(500).json({ error });
