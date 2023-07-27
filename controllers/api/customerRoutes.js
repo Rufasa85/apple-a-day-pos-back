@@ -15,6 +15,7 @@ router.get('/', apiAuth, async (req, res) => {
 		const options = {
 			// include: { all: true, nested: true },
 			// include: { all: true },
+      where:{ UserId: req.userId},
 			order: [['lastName'], ['firstName']],
       include: [{model: Order}]
 		};
@@ -50,7 +51,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 // POST new customer
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const customer = await Customer.create(req.body);
+		const customer = await Customer.create({...req.body, UserId: req.userId});
 		if (!customer) return res.status(400).json({ error: 'This customer could not be created.' });
 
 		return res.status(200).json({ message: 'Customer created!', customer });
