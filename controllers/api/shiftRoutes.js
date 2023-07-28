@@ -5,7 +5,7 @@ dotenv.config();
 
 // import all models to easily manipulate includes
 // remove unused models before deployment
-import { Customer, Order, Shift, Item, OrderItem } from '../../models/index.js';
+import { Customer, Order, Shift, Item, ShiftItem, OrderItem } from '../../models/index.js';
 import apiAuth from '../../middleware/apiAuth.js';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ const router = express.Router();
 router.get('/', apiAuth, async (req, res) => {
 	try {
 		const options = {
-      where:{ UserId: req.userId},
+			where: { UserId: req.userId },
 			include: [{ model: Order, include: [{ model: OrderItem }] }, { model: Item }]
 		};
 
@@ -28,17 +28,20 @@ router.get('/', apiAuth, async (req, res) => {
 	}
 });
 
-// GET today's shiftItems
-router.get('/today/:userId', async (req, res) => {
+// GET today's shift
+router.get('/today/:UserId', async (req, res) => {
 	try {
+		const { UserId } = req.params;
+		if (!UserId) return res.status(400).json({ error: `Please include { UserId: number } in the request body` });
+
 		const options = {
-			where: { date: dayjs().format('YYYY-MM-DD'), UserId: req.params.userId },
-			include: [{ model: Item }]
+			where: { date: dayjs().format('YYYY-MM-DD'), UserId },
+			include: [{ model: ShiftItem, include: [{ model: Item }] }]
 		};
 
 		const shift = await Shift.findOne(options);
 		if (!shift) return res.status(404).json({ error: 'This shift could not be found.' });
-    // I changed this! Needed shift id -HW
+
 		return res.status(200).json(shift);
 	} catch (error) {
 		console.error(error);
@@ -67,7 +70,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 // POST new shift
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const shift = await Shift.create({...req.body, UserId: req.userId});
+		const shift = await Shift.create({ ...req.body, UserId: req.userId });
 		if (!shift) return res.status(400).json({ error: 'This shift could not be created.' });
 
 		return res.status(200).json({ message: 'shift created!', shift });
