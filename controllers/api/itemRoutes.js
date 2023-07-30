@@ -52,8 +52,8 @@ router.post('/', apiAuth, async (req, res) => {
 	try {
 		const { UserId } = req;
 
-		const { name } = req.body;
-		if (!name) return res.status(400).json({ error: `Please include { name: string } in the request body` });
+		const { id, name } = req.body;
+		if (!name) return res.status(400).json({ error: `Please include { id: number | null, name: string } in the request body` });
 
 		const shift = await Shift.findOrCreate({
 			where: {
@@ -62,12 +62,21 @@ router.post('/', apiAuth, async (req, res) => {
 			}
 		});
 
-		const item = await Item.findOrCreate({
-			where: {
-				name,
-				UserId
-			}
-		});
+		const itemOptions = id
+			? {
+					where: {
+						id,
+						UserId
+					}
+			  }
+			: {
+					where: {
+						name,
+						UserId
+					}
+			  };
+
+		const item = await Item.findOrCreate(itemOptions);
 
 		const shiftItem = await ShiftItem.findOrCreate({
 			where: {
