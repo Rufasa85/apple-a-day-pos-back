@@ -15,19 +15,19 @@ Customer.belongsTo(User);
 User.hasMany(Item);
 Item.belongsTo(User);
 
-Shift.hasMany(Order);
+Shift.hasMany(Order, { onDelete: 'cascade' });
 Order.belongsTo(Shift);
 
 Customer.hasMany(Order);
 Order.belongsTo(Customer);
 
-Order.hasMany(OrderItem);
+Order.hasMany(OrderItem, { onDelete: 'cascade' });
 OrderItem.belongsTo(Order);
 
 Item.hasMany(OrderItem);
 OrderItem.belongsTo(Item);
 
-Shift.hasMany(ShiftItem);
+Shift.hasMany(ShiftItem, { onDelete: 'cascade' });
 ShiftItem.belongsTo(Shift);
 
 Item.hasMany(ShiftItem);

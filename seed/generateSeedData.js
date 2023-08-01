@@ -21,7 +21,8 @@ const generateSeedData = (UserId) => {
 		customers.push({
 			firstName: faker.person.firstName(),
 			lastName: faker.person.lastName(),
-			dateOfBirth: faker.date.past({ years: 150 })
+			dateOfBirth: faker.date.past({ years: 150 }),
+			UserId
 		});
 	}
 

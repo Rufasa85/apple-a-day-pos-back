@@ -6,29 +6,31 @@ dotenv.config();
 
 import { User } from '../../models/index.js';
 import apiAuth from '../../middleware/apiAuth.js';
+import resetGuestData from '../../seed/resetGuestData.js';
 
 const router = express.Router();
 
 // POST user login
 router.post('/login', async (req, res) => {
 	try {
-		const { email, password } = req.body;
-		if (!email || !password) return res.status(400).json({ error: `Please include { email: string, password: string } in the request body` });
+		const { username, password } = req.body;
+		if (!username || !password) return res.status(400).json({ error: `Please include { username: string, password: string } in the request body` });
 
 		const options = {
-			where: {
-				email: req.body.email
-			}
+			where: { username }
 		};
 
 		const foundUser = await User.findOne(options);
-		if (!foundUser) return res.status(400).json({ error: 'Incorrect email or password.' });
+		if (!foundUser) return res.status(400).json({ error: 'Incorrect username or password.' });
 
 		const passwordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
-		if (!passwordMatch) return res.status(400).json({ error: 'Incorrect email or password.' });
+		if (!passwordMatch) return res.status(400).json({ error: 'Incorrect username or password.' });
 
 		const UserId = foundUser.id;
 		const token = jwt.sign({ UserId }, process.env.JWT_SECRET, { expiresIn: '12h' });
+
+		const isGuest = foundUser.username === 'guest';
+		if (isGuest) resetGuestData(UserId);
 
 		return res.status(200).json({ token, UserId });
 	} catch (error) {
