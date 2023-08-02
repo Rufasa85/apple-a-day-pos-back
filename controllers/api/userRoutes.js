@@ -1,47 +1,55 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt'
-import apiAuth from '../../middleware/apiAuth.js';
-import { User } from '../../models/index.js';
+import bcrypt from 'bcrypt';
 dotenv.config();
+
+import { User } from '../../models/index.js';
+import apiAuth from '../../middleware/apiAuth.js';
+import resetGuestData from '../../seed/resetGuestData.js';
 
 const router = express.Router();
 
 // POST user login
 router.post('/login', async (req, res) => {
 	try {
-		const foundUser = await User.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
-		if (!foundUser) return res.status(400).json({ error: 'No user with that email' });
-    const check = bcrypt.compareSync(req.body.password, foundUser.password)
-		if (!check) return res.status(400).json({ error: 'wrong password' });
+		const { username, password } = req.body;
+		if (!username || !password) return res.status(400).json({ error: `Please include { username: string, password: string } in the request body` });
 
-		const token = jwt.sign({ userId: foundUser.id }, process.env.JWT_SECRET, { expiresIn: '12h' });
-		return res.status(200).json({ token, userId: foundUser.id });
+		const options = {
+			where: { username }
+		};
+
+		const foundUser = await User.findOne(options);
+		if (!foundUser) return res.status(400).json({ error: 'Incorrect username or password.' });
+
+		const passwordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
+		if (!passwordMatch) return res.status(400).json({ error: 'Incorrect username or password.' });
+
+		const UserId = foundUser.id;
+		const token = jwt.sign({ UserId }, process.env.JWT_SECRET, { expiresIn: '12h' });
+
+		const isGuest = foundUser.username === 'guest';
+		if (isGuest) resetGuestData(UserId);
+
+		return res.status(200).json({ token, UserId });
 	} catch (error) {
 		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
 
-router.post('/check-token', (req, res) => {
+router.post('/check-token', apiAuth, (req, res) => {
 	try {
-    const token = jwt.verify(req.headers?.authorization?.split(' ')[1], process.env.JWT_SECRET);
-    console.log(token)
-		const newToken = jwt.sign({ userId: token.userId }, process.env.JWT_SECRET, { expiresIn: '12h' });
-		return res.status(200).json({ token: newToken, userId: token.userId });
+		const { UserId } = req;
+
+		const token = jwt.sign({ UserId }, process.env.JWT_SECRET, { expiresIn: '12h' });
+
+		return res.status(200).json({ token, UserId });
 	} catch (error) {
-		// console.log(error);
-		return res.status(403).json({ msg: "bad token" });
+		console.log(error);
+		return res.status(403).json({ msg: 'bad token' });
 	}
 });
-
-
-
-
 
 export default router;

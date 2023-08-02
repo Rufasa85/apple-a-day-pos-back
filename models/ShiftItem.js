@@ -5,33 +5,29 @@ class ShiftItem extends Model {}
 
 ShiftItem.init(
 	{
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-		ShiftId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			unique: false
-		},
-
-		ItemId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			unique: false
-		},
-
-		// change to stock? Do we need this?
-		stock: {
-			type: DataTypes.INTEGER,
-			allowNull: true
-			// defaultValue: 1 ?
-		}
+		// id: {
+		// 	type: DataTypes.INTEGER,
+		// 	autoIncrement: true,
+		// 	primaryKey: true
+		// },
+		// ShiftId: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: false,
+		// 	unique: false
+		// },
+		// ItemId: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: false,
+		// 	unique: false
+		// },
+		// stock: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: true,
+		// 	unique: false
+		// }
 	},
 	{
 		sequelize
-		// timestamps: false
 	}
 );
 

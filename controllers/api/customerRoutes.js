@@ -12,12 +12,13 @@ const router = express.Router();
 // GET all customers
 router.get('/', apiAuth, async (req, res) => {
 	try {
+		const { UserId } = req;
+		console.log(req.UserId);
+
 		const options = {
-			// include: { all: true, nested: true },
-			// include: { all: true },
-      where:{ UserId: req.userId},
+			where: { UserId },
 			order: [['lastName'], ['firstName']],
-      include: [{model: Order}]
+			include: [{ model: Order }]
 		};
 
 		const customers = await Customer.findAll(options);
@@ -25,6 +26,7 @@ router.get('/', apiAuth, async (req, res) => {
 
 		return res.status(200).json(customers);
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -33,9 +35,7 @@ router.get('/', apiAuth, async (req, res) => {
 router.get('/:id', apiAuth, async (req, res) => {
 	try {
 		const options = {
-			// include: { all: true, nested: true }
-			// include: { all: true }
-			include: [{ model: Order, include: [{model: Shift}, {model: OrderItem, include: {model: Item}}] }]
+			include: [{ model: Order, include: [{ model: Shift }, { model: OrderItem, include: { model: Item } }] }]
 		};
 
 		const customer = await Customer.findByPk(req.params.id, options);
@@ -43,7 +43,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 
 		return res.status(200).json(customer);
 	} catch (error) {
-    console.log(error)
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });
@@ -51,7 +51,7 @@ router.get('/:id', apiAuth, async (req, res) => {
 // POST new customer
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const customer = await Customer.create({...req.body, UserId: req.userId});
+		const customer = await Customer.create({ ...req.body, UserId: req.userId });
 		if (!customer) return res.status(400).json({ error: 'This customer could not be created.' });
 
 		return res.status(200).json({ message: 'Customer created!', customer });
