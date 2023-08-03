@@ -16,7 +16,7 @@ Customer.init(
 		},
 
 		dateOfBirth: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: true
 		}
 	},
