@@ -96,7 +96,8 @@ const generateSeedData = (UserId) => {
 
 			orderItems.push({
 				OrderId: i + (UserId - 1) * numOrders + 1,
-				ItemId: itemId.ItemId
+				ItemId: itemId.ItemId,
+				quantity: faker.number.int({ min: 1, max: 300 })
 			});
 		}
 	}

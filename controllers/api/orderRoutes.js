@@ -54,22 +54,22 @@ router.post('/', apiAuth, async (req, res) => {
 	// {
 	//   "CustomerId": 12,
 	//   "ShiftId": 10,
-	//   "ItemIds": [2,2,3,7]
+	//   "items": [{ ItemId, quantity }]
 	// }
 
 	try {
-		const order = await Order.create(req.body);
+		const { CustomerId, ShiftId, items } = req.body;
+
+		const order = await Order.create({ CustomerId, ShiftId });
 		if (!order) return res.status(400).json({ error: 'This order could not be created.' });
 
-		if (req.body.ItemIds.length > 0) {
-			const orderItems = req.body.ItemIds.map((itemId) => ({
-				OrderId: order.id,
-				ItemId: itemId
-			}));
+		const itemObjects = items.map((item) => ({
+			OrderId: order.id,
+			...item
+		}));
 
-			const createdItems = await OrderItem.bulkCreate(orderItems);
-			if (!createdItems) return res.status(400).json({ error: 'The items could not be added to the order.' });
-		}
+		const orderItems = await OrderItem.bulkCreate(itemObjects);
+		if (!orderItems) return res.status(400).json({ error: 'The items could not be added to the order.' });
 
 		return res.status(200).json({ message: 'order created!', order });
 	} catch (error) {

@@ -51,11 +51,18 @@ router.get('/:id', apiAuth, async (req, res) => {
 // POST new customer
 router.post('/', apiAuth, async (req, res) => {
 	try {
-		const customer = await Customer.create({ ...req.body, UserId: req.userId });
-		if (!customer) return res.status(400).json({ error: 'This customer could not be created.' });
+		const { UserId } = req;
 
-		return res.status(200).json({ message: 'Customer created!', customer });
+		const customer = await Customer.findOrCreate({
+			where: {
+				...req.body,
+				UserId
+			}
+		});
+
+		return res.status(200).json({ message: 'Customer added!', customer });
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error });
 	}
 });

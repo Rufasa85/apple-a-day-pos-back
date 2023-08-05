@@ -52,9 +52,6 @@ router.post('/', apiAuth, async (req, res) => {
 	try {
 		const { UserId } = req;
 
-		const { id, name } = req.body;
-		if (!name) return res.status(400).json({ error: `Please include { id: number | null, name: string } in the request body` });
-
 		const shift = await Shift.findOrCreate({
 			where: {
 				date: dayjs().format('YYYY-MM-DD'),
@@ -62,21 +59,12 @@ router.post('/', apiAuth, async (req, res) => {
 			}
 		});
 
-		const itemOptions = id
-			? {
-					where: {
-						id,
-						UserId
-					}
-			  }
-			: {
-					where: {
-						name,
-						UserId
-					}
-			  };
-
-		const item = await Item.findOrCreate(itemOptions);
+		const item = await Item.findOrCreate({
+			where: {
+				...req.body,
+				UserId
+			}
+		});
 
 		const shiftItem = await ShiftItem.findOrCreate({
 			where: {
