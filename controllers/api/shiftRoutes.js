@@ -14,8 +14,11 @@ const router = express.Router();
 router.get('/', apiAuth, async (req, res) => {
 	try {
 		const options = {
-			where: { UserId: req.userId },
-			include: [{ model: Order, include: [{ model: OrderItem }] }, { model: Item }]
+			where: { UserId: req.UserId },
+			include: [
+				{ model: Order, include: [{ model: OrderItem }] },
+				{ model: ShiftItem, include: [{ model: Item }] }
+			]
 		};
 
 		const shifts = await Shift.findAll(options);
