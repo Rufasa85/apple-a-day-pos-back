@@ -1,0 +1,56 @@
+:root {
+	/* colors */
+	--light: white;
+	--lightOverlay: rgba(255, 255, 255, 0.9);
+	--lightActive: rgba(255, 255, 255, 0.15);
+	--lightHover: rgba(255, 255, 255, 0.05);
+
+	--dark: black;
+	--darkOverlay: rgba(0, 0, 0, 0.9);
+	--darkActive: rgba(0, 0, 0, 0.15);
+	--darkHover: rgba(0, 0, 0, 0.05);
+
+	--gray: hsl(0, 0%, 50%);
+	--lightGray: hsl(0, 0%, 95%);
+	--darkGray: hsl(0, 0%, 15%);
+
+	--accent: salmon;
+	--lightAccent: hsl(6, 93%, 95%);
+	--darkAccent: hsl(6, 93%, 5%);
+	--accentOverlay: rgba(255, 255, 255, 0.95);
+
+	--alert: rgb(220, 0, 0);
+	--success: rgb(0, 180, 0);
+
+	--codeBackground: rgb(24, 24, 24);
+	--codeGreen: rgb(88, 138, 67);
+	--codeYellow: rgb(254, 209, 11);
+	--codePurple: rgb(207, 83, 205);
+	--codeBlue: rgb(26, 138, 254);
+	--codeLightBlue: rgb(139, 208, 250);
+	--codeDarkBlue: rgb(69, 136, 202);
+	--codeBrown: rgb(194, 125, 101);
+
+	/* sizes */
+	--puny: 3px;
+	--tiny: 5px;
+	--small: 12px;
+	--medium: 24px;
+	--large: 36px;
+	--huge: 48px;
+	--giant: 120px;
+
+	/* borders */
+	--lightBorder: 1px solid rgba(0, 0, 0, 0.1);
+	--borderRadius: 5px;
+
+	/* shadows */
+	--lightShadow: 0 0 24px rgba(0, 0, 0, 0.1);
+	--darkShadow: 0 0 24px rgba(0, 0, 0, 0.1);
+
+	/* icons */
+	--iconSize: 22px;
+
+	/* misc */
+	--site-header-height: calc(var(--huge) + var(--medium) + var(--iconSize) + var(--medium) + var(--huge));
+}

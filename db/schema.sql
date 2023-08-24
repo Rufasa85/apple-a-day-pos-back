@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS apple_a_day_pos_db;
+
+-- CREATE DATABASE
+CREATE DATABASE apple_a_day_pos_db;

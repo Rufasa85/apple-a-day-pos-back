@@ -1,0 +1,33 @@
+@keyframes fade-in {
+	from {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: revert;
+		opacity: 0;
+	}
+
+	to {
+		display: revert;
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		display: revert;
+		opacity: 1;
+	}
+
+	99% {
+		display: revert;
+		opacity: 0;
+	}
+
+	to {
+		display: none;
+		opacity: 0;
+	}
+}
