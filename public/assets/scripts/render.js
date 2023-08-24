@@ -453,37 +453,37 @@ const generateHtml = (model, method, route, data) => {
 
 	route && main.setAttribute('data-sub', route);
 
-	main.innerHTML = `<header className="details-header">
-    <section className="details-section">
-        <code id="${id}-route-text" className="route-path">
+	main.innerHTML = `<header class="details-header">
+    <section class="details-section">
+        <code id="${id}-route-text" class="route-path">
             <span>/</span>api${data.route.replaceAll('/', '<span>/</span>')}</code>
 
-        <div className="tooltip">
-            <button className="copy-to-clipboard-button">
-                <span id="${id}-route-text-tooltip" className="tooltip-text">Copy to clipboard</span>
+        <div class="tooltip">
+            <button class="copy-to-clipboard-button">
+                <span id="${id}-route-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-                <i className="fi fi-rr-copy-alt" data-reference="${id}-route-text"></i>
+                <i class="fi fi-rr-copy-alt" data-reference="${id}-route-text"></i>
             </button>
         </div>
     </section>
 </header>
 
-<main className="details-main">
-    <section className="details-section">
-        <header className="details-section-header">
-            <h3 className="details-section-header-heading">Headers</h3>
-            <h3 className="details-section-header-type">${data.headers ? 'JSON' : 'None'}</h3>
+<main class="details-main">
+    <section class="details-section">
+        <header class="details-section-header">
+            <h3 class="details-section-header-heading">Headers</h3>
+            <h3 class="details-section-header-type">${data.headers ? 'JSON' : 'None'}</h3>
         </header>
         ${
 				data.headers
-					? `<main className="details-section-main">
+					? `<main class="details-section-main">
             <pre><code id="${id}-header-text">${data.headers ? JSON.stringify(data.headers, null, 2) : ''}</code></pre>
 
-            <div className="tooltip">
-                <button className="copy-to-clipboard-button">
-                    <span id="${id}-header-text-tooltip" className="tooltip-text">Copy to clipboard</span>
+            <div class="tooltip">
+                <button class="copy-to-clipboard-button">
+                    <span id="${id}-header-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-                    <i className="fi fi-rr-copy-alt" data-reference="${id}-header-text"></i>
+                    <i class="fi fi-rr-copy-alt" data-reference="${id}-header-text"></i>
                 </button>
             </div>
         </main>`
@@ -491,22 +491,22 @@ const generateHtml = (model, method, route, data) => {
 			}
     </section>
 
-    <section id="${id}-body" className="details-section">
-        <header className="details-section-header">
-            <h3 className="details-section-header-heading">Body</h3>
-            <h3 className="details-section-header-type">${data.body ? 'JSON' : 'None'}</h3>
+    <section id="${id}-body" class="details-section">
+        <header class="details-section-header">
+            <h3 class="details-section-header-heading">Body</h3>
+            <h3 class="details-section-header-type">${data.body ? 'JSON' : 'None'}</h3>
         </header>
 
         ${
 				data.body
-					? `<main className="details-section-main">
+					? `<main class="details-section-main">
         <pre><code id="${id}-body-text">${data.body ? JSON.stringify(data.body, null, 2) : ''}</code></pre>
 
-        <div className="tooltip">
-            <button className="copy-to-clipboard-button">
-                <span id="${id}-body-text-tooltip" className="tooltip-text">Copy to clipboard</span>
+        <div class="tooltip">
+            <button class="copy-to-clipboard-button">
+                <span id="${id}-body-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-                <i className="fi fi-rr-copy-alt" data-reference="${id}-body-text"></i>
+                <i class="fi fi-rr-copy-alt" data-reference="${id}-body-text"></i>
             </button>
         </div>
     </main>`
@@ -514,22 +514,22 @@ const generateHtml = (model, method, route, data) => {
 			}
     </section>
 
-    <section id="${id}-response" className="details-section">
-        <header className="details-section-header">
-            <h3 className="details-section-header-heading">Response</h3>
-            <h3 className="details-section-header-type">${data.response ? 'JSON' : 'None'}</h3>
+    <section id="${id}-response" class="details-section">
+        <header class="details-section-header">
+            <h3 class="details-section-header-heading">Response</h3>
+            <h3 class="details-section-header-type">${data.response ? 'JSON' : 'None'}</h3>
         </header>
 
         ${
 				data.response
-					? `<main className="details-section-main">
+					? `<main class="details-section-main">
     <pre><code id="${id}-response-text">${data.response ? JSON.stringify(data.response, null, 2) : ''}</code></pre>
 
-    <div className="tooltip">
-        <button className="copy-to-clipboard-button">
-            <span id="${id}-response-text-tooltip" className="tooltip-text">Copy to clipboard</span>
+    <div class="tooltip">
+        <button class="copy-to-clipboard-button">
+            <span id="${id}-response-text-tooltip" class="tooltip-text">Copy to clipboard</span>
 
-            <i className="fi fi-rr-copy-alt" data-reference="${id}-response-text"></i>
+            <i class="fi fi-rr-copy-alt" data-reference="${id}-response-text"></i>
         </button>
     </div>
 </main>`
