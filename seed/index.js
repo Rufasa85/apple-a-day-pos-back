@@ -19,7 +19,7 @@ const seed = async () => {
 		});
 
 		// for (let i = 1; i <= users.length; i++) {
-		// 	await createSeeds(i);
+		// 	// await createSeeds(i);
 		// }
 
 		process.exit(0);
