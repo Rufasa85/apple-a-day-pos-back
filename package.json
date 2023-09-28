@@ -22,6 +22,12 @@
 		"resetdb": "mysql -u root -p < ./db/schema.sql",
 		"seed": "node seed/index.js"
 	},
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Rufasa85/apple-a-day-pos-back.git"
@@ -32,5 +38,8 @@
 	"bugs": {
 		"url": "https://github.com/Rufasa85/apple-a-day-pos-back/issues"
 	},
-	"homepage": "https://github.com/Rufasa85/apple-a-day-pos-back#readme"
+	"homepage": "https://github.com/Rufasa85/apple-a-day-pos-back#readme",
+	"devDependencies": {
+		"eslint-config-wesbos": "^3.2.3"
+	}
 }
