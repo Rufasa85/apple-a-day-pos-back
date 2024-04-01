@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
 		const token = jwt.sign({ UserId }, process.env.JWT_SECRET, { expiresIn: '12h' });
 
 		const isGuest = foundUser.username === 'guest';
-		if (isGuest) resetGuestData(UserId);
+		// if (isGuest) resetGuestData(UserId);
 
 		return res.status(200).json({ token, UserId });
 	} catch (error) {
